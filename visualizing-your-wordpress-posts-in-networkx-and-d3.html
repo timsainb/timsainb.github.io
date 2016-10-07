@@ -107,18 +107,54 @@
     <!-- Post Content -->
     <article>
         
+        <style type="text/css">
+            .input_area {
+                max-height: 600px;
+                overflow:scroll;
+            }#my-div
+{
+    width    : 1100px;
+    height   : 1000px;
+    overflow : hidden;
+    position : relative;
+}
 
-       <b>Note: search function not currently working on github.io blog currently due to jqueryui issues with pelican. 
-       Try looking <a href="https://timsainb.github.io/visualize_wordpress_posts/">here</a></b>
-        <link rel="import" href="https://timsainb.github.io/visualize_wordpress_posts/index.html">
+#my-iframe
+{
+    position : absolute;
+    top      : 0;
+    left     : -180px;
+    width    : 1280px;
+    height   : 1000px;
+}
+        </style>
+       <p style="
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    color: #8c2c2c;
+">Note: Because of some jQuery issues, the network you're seeing on this page is actually an iframe of the source, located <a href="https://timsainb.github.io/visualize_wordpress_posts/"><i>here</i></a>. To make your own network, click <i><a href="https://github.com/timsainb/visualize_wordpress_posts">'Fork me on Github'</a></i> on the top right.</p>
 
-         <script> 
-        $(function(){
-          $("#includedContent").load("https://timsainb.github.io/visualize_wordpress_posts/index.html"); 
+        
+        <script> 
+        window.onload = function() {
+            jQuery(document).ready(function($){
+                    $( "#includedContent" ).load( "https://rawgit.com/timsainb/visualize_wordpress_posts/master/index.html .container", function() {
+                        $( "#graph-div" ).parent().parent().parent().parent().replaceWith("<div id='my-div'><iframe src='https://rawgit.com/timsainb/visualize_wordpress_posts/master/index.html#graph-div' id='my-iframe' scrolling='no'></iframe></div>")
+                        
+                        
+                        });
           $('#includedContent').parent().parent().css("margin-left", "0");
+
         });
+        }
+
+
     </script> 
+
         <div id="includedContent"></div>
+
+
     
     </article>
 
